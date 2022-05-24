@@ -126,15 +126,16 @@ public class BusBooking
 										}
 									}
 									
-									
+									int k=0;
 									loop:
-									for(Bus b:bus)
+					
+									for(;k<bus.size();k++)
 									{
-										if(b.busType.equalsIgnoreCase(type))
+										if(bus.get(k).busType.equalsIgnoreCase(type))
 										{	
 											System.out.println("Enter no of tickets:");
 											int noOfTicket = sc.nextInt();
-											if(b.isAvaliable(noOfTicket))
+											if(bus.get(k).isAvaliable(noOfTicket))
 											{
 												
 												for(int i = 0;i < noOfTicket;i++)
@@ -143,19 +144,20 @@ public class BusBooking
 													String tname = sc.next();
 													System.out.print("Enter gender:");
 													char gen = sc.next().charAt(0);
-													b.book();
-													psg.add(new Passenger(tname,gen,b.b));
+													bus.get(k).book();
+													psg.add(new Passenger(tname,gen,bus.get(k).b));
 													System.out.println("-----------------------------------");
 													
 												}
-												int totalFare = b.fair * noOfTicket;
+												int totalFare = bus.get(k).fair * noOfTicket;
 												System.out.println("Booked " + noOfTicket + " Seats Successfully.");
 												System.out.println("Total fare is " + totalFare);
 												System.out.println("-----------------------------------");
 											}
 											else
 											{
-												System.out.println("Avaliable seats in the bus is "+b.noOfFreeSeats+".Enter seats accordingly.");
+												System.out.println("Avaliable seats in the bus is "+bus.get(k).noOfFreeSeats+".Enter seats accordingly.");
+												k=-1;
 												continue loop;
 											}
 												
